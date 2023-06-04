@@ -6,8 +6,9 @@ class PostService {
     title,
     image,
     content,
+    description,
   }: IPostDocument | any): Promise<IPostDocument> {
-    const post: any = new PostModel({ title, image, content });
+    const post: any = new PostModel({ title, image, content, description });
     await post.save();
 
     const res = post.extra(content);

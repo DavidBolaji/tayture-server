@@ -9,12 +9,12 @@ class UserService {
     role,
     phone,
   }: IUserDocument | any): Promise<IUserDocument> {
-    console.log(email);
+    // console.log(email);
     const exist: any = await UserModel.findOne({ email: email }).select(
       "_id email isAdmin picture name"
     );
 
-    console.log(typeof exist?._id);
+    // console.log(typeof exist?._id);
 
     if (typeof exist?._id !== "undefined") {
       console.log("entered");

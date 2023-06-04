@@ -2,17 +2,19 @@ import { Request, Response } from "express";
 import { IPostDocument } from "../interfaces/post.interface";
 import { postService } from "../services/post.service";
 import { log } from "../../../utils/Logger";
+import { Helper } from "../../../utils/Helper";
 
 const loger = log.Log("postcontroller");
 
 export class PostController {
   public async create(req: Request, res: Response) {
-    const { title, image, content } = req.body;
+    const { image, content, title, description } = req.body;
 
     const result: IPostDocument = (await postService.createPost({
       title,
       image,
       content,
+      description,
     })) as unknown as IPostDocument;
 
     res.status(200).send({ message: "Post created succesfully", data: result });
@@ -35,7 +37,6 @@ export class PostController {
     const post = await postService.findBlog(req.params.id);
     // and save in catch
     // productCache.saveProductToCache(req.url, product);
-    console.log(post);
     //return it to user
     res.status(200).json({ message: "fetch succesfull", data: post });
   }

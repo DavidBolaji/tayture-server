@@ -7,6 +7,7 @@ const postSchema = new Schema(
   {
     title: { type: String },
     image: { type: String },
+    description: { type: String },
     content: { type: String },
     date: { type: String },
     length: { type: String },
@@ -18,7 +19,6 @@ postSchema.methods.extra = async function (text: string) {
   const post = this;
   post.date = moment().format("MMMM DD, YYYY");
   post.length = readingTime(text).text;
-  console.log(post.length);
   const res = await post.save();
   return { res };
 };
