@@ -50,8 +50,8 @@ export class TaytureServer {
 
     app.use(compression());
     // limit json response
-    app.use(json({ limit: "50mb" }));
-    app.use(urlencoded({ extended: true, limit: "50mb" }));
+    app.use(json());
+    // app.use(urlencoded({ extended: true, limit: "50mb" }));
   }
 
   private routeMiddleware(app: Application) {
